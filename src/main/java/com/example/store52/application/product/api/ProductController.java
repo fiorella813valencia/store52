@@ -1,6 +1,5 @@
 package com.example.store52.application.product.api;
 
-
 import com.example.store52.application.product.domain.service.ProductService;
 import com.example.store52.application.product.mapping.ProductMapper;
 import com.example.store52.application.product.resource.CreateProductResource;
@@ -44,8 +43,8 @@ public class ProductController {
 
     //UPDATE
     @PutMapping("/{productId}")
-    public ProductResource updateAgency(@PathVariable Long authorId, @RequestBody UpdateProductResource resource) {
-        return mapper.toResource(productService.update(authorId, mapper.toModel(resource)));
+    public ProductResource updateAdmin(@PathVariable Long productId, @RequestBody UpdateProductResource resource) {
+        return mapper.toResource(productService.update(productId, mapper.toModel(resource)));
     }
 
 

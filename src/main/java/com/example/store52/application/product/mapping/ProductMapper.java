@@ -1,5 +1,7 @@
 package com.example.store52.application.product.mapping;
 
+import com.example.store52.application.admin.domain.model.Admin;
+import com.example.store52.application.admin.resource.AdminResource;
 import com.example.store52.application.product.domain.model.Product;
 import com.example.store52.application.product.resource.CreateProductResource;
 import com.example.store52.application.product.resource.ProductResource;
@@ -38,6 +40,7 @@ public class ProductMapper implements Serializable {
     public Product toModel(UpdateProductResource resource){
         return mapper.map(resource,Product.class);
     }
+
 
 
 }
