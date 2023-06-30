@@ -79,39 +79,20 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Admin update(Long adminId, Admin request) {
+        Optional<Admin> existingAdmin = adminRepository.findById(adminId);
+        if (existingAdmin.isEmpty()) {
+            throw new ResourceNotFoundException(ENTITY, adminId);
+        }
 
-//        Set<ConstraintViolation<Admin>> violations=validator.validate(request);
-//        if(!violations.isEmpty())
-//            throw new ResourceValidationException(ENTITY, violations);
+        Admin updatedAdmin = existingAdmin.get();
 
-        //validate if the product exist
-        Optional<Admin> existingAdmin=adminRepository.findById(request.getId());
-        if(existingAdmin.isEmpty())
-            throw new ResourceNotFoundException(ENTITY,request.getId());
-
-//
-//        //validate if the new name is used in other product
-//        Admin adminWithNameAndLastName = adminRepository.findByNameAndLastName(request.getName(), request.getLastName());
-//        if (adminWithNameAndLastName!=null) {
-//            throw new ResourceValidationException(ENTITY, "Admin with the same name and last already exists");
-//        }
-//
-//        //validator for code
-//        Admin adminWithCode=adminRepository.findByCode(request.getCode());
-//        if(adminWithCode!=null)
-//            throw new ResourceValidationException(ENTITY,"Admin with the code already exists");
-
-
-
-        Admin updatedAdmin = existingAdmin.get()
-                .withName(request.getName())
-                .withLastName(request.getLastName())
-                .withEmail(request.getEmail())
-                .withPassword(request.getPassword())
-                .withPhoneNumber(request.getPhoneNumber())
-                .withCode(request.getCode());
-
-
+        // Update the properties only if they are provided in the request
+        updatedAdmin.setName(request.getName());
+        updatedAdmin.setLastName(request.getLastName());
+        updatedAdmin.setEmail(request.getEmail());
+        updatedAdmin.setPassword(request.getPassword());
+        updatedAdmin.setPhoneNumber(request.getPhoneNumber());
+        updatedAdmin.setCode(request.getCode());
 
         return adminRepository.save(updatedAdmin);
     }
