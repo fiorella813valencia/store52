@@ -1,6 +1,6 @@
 package com.example.store52.application.admin.service;
 
-import com.example.store52.application.product.domain.model.Product;
+
 import com.example.store52.shared.exception.ResourceNotFoundException;
 import com.example.store52.shared.exception.ResourceValidationException;
 import com.example.store52.application.admin.domain.model.Admin;
