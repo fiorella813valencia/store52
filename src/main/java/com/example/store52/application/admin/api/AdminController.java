@@ -38,6 +38,12 @@ public class AdminController {
         return mapper.toResource(adminService.getInfoAdminById(adminId));
     }
 
+    //GET BY EMAIL AND PASSWORD
+    @GetMapping("email/password/{adminEmail}/{adminPassword}")
+    public AdminResource getInfoAgencyByEmailAndPassword(@PathVariable("adminEmail") String adminEmail, @PathVariable("adminPassword") String adminPassword) {
+        return mapper.toResource(adminService.getByEmailAndPassword(adminEmail,adminPassword));
+    }
+
     //POST
     @PostMapping
     public AdminResource createAdmin(@RequestBody CreateAdminResource resource){

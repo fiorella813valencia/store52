@@ -34,11 +34,12 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public Admin getByEmailAndPassword(String email, String password) {
-        Admin admin = adminRepository.findByEmailAndPassword(email, password);
-        if (admin == null) {
-            throw new ResourceNotFoundException(ENTITY, Long.valueOf("Admin with email " + email + " and password not found"));
-        }
-        return admin;
+//        Admin admin = adminRepository.findByEmailAndPassword(email, password);
+//        if (admin == null) {
+//            throw new ResourceNotFoundException(ENTITY, Long.valueOf("Admin with email " + email + " and password not found"));
+//        }
+//        return admin;
+        return adminRepository.findByEmailAndPassword(email,password);
     }
 
     @Override
